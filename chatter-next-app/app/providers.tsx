@@ -21,7 +21,7 @@ import { WagmiProvider } from "wagmi";
 const { wallets } = getDefaultWallets();
 
 const anvil: Chain = {
-  id: 31_337,
+  id: 31337,
   name: "Anvil Local",
   nativeCurrency: {
     name: "tETH",
@@ -30,8 +30,9 @@ const anvil: Chain = {
   },
   rpcUrls: {
     default: { http: ["http://localhost:8545"] },
+    public: { http: ["http://localhost:8545"] },
     },
-  testnet: true
+  testnet: true,
 };
 
 const config = getDefaultConfig({
@@ -46,6 +47,7 @@ const config = getDefaultConfig({
   ],
     chains: [
       sepolia,
+      anvil,
     ...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === "true" ? [sepolia] : []),
   ],
   ssr: true,
